@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val webView = findViewById(R.id.webView) as WebView
+        webView.loadUrl("file:///android_asset/index.html")
         webView.setWebChromeClient(object : WebChromeClient() {
             override fun onJsAlert(view: WebView, url: String, message: String, result: JsResult): Boolean {
                 val components = message.split(":")
@@ -28,5 +29,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
         })
+        val settings = webView.getSettings()
+        settings.setJavaScriptEnabled(true)
     }
 }
